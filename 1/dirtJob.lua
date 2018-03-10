@@ -1,4 +1,4 @@
-print("DirtJobReached")
+print("Dirtjob start")
 
 function goBack()
     return turtle.back()
@@ -16,11 +16,13 @@ function turnL()
     return turtle.turnLeft()
 end
 
-function lookU()
+function lookU(num)
+    slot(num)
     return turtle.compareUp()
 end
 
-function lookD()
+function lookD(num)
+    slot(num)
     return turtle.compareDown()
 end
 
@@ -47,50 +49,79 @@ function toggleMe()
 
 end
 
-function travel()
-    slot(14)
-    
+function travel(slotNo)
+    goForward()
+    toggleMe = true
+    slot(slotNo)
+    print(lookD())
     while toggleMe do
-        goForward()
+        if lookD() == false then
+            goForward()
+        end
+        
         if lookD() == true then
             toggleMe = false
-            turnR()
-            goForward()
-            os.sleep(15)
         end
+        
+
     end
 end
+
+function loadLeaves()
+slot(1)
+turtle.suckDown()
+slot(2)
+turtle.suckDown()
+slot(3)
+turtle.suckDown()
+goForward()
+    
+end
+    
+function dropOff(slotNo)
+    slot(slotNo)
+    i = 0
+    repeat
+        local aa = 1
+        turtle.dropDown()
+        i = i + aa
+      print(i)
+    until i == 10
+    goForward()
+    return true
+end
+
 function slotPick()
-    if turtle.getItemCount(1) >= 3 then
+    if turtle.getItemCount(1) >= 8 then
         return 1 
-    elseif turtle.getItemCount(2) <= 3 then
+    elseif turtle.getItemCount(2) >= 8 then
         return 2
-    elseif turtle.getItemCount(3) <= 3 then
+    elseif turtle.getItemCount(3) >= 8 then
         return 3
-    elseif turtle.getItemCount(4) <= 3 then
+    elseif turtle.getItemCount(4) >= 8 then
         return 4
-    elseif turtle.getItemCount(5) <= 3 then
+    elseif turtle.getItemCount(5) >= 8 then
         return 5
-    elseif turtle.getItemCount(6) <= 3 then
+    elseif turtle.getItemCount(6) >= 8 then
         return 6
-    elseif turtle.getItemCount(7) <= 3 then
+    elseif turtle.getItemCount(7) >= 8 then
         return 7
-    elseif turtle.getItemCount(8) <= 3 then
+    elseif turtle.getItemCount(8) >= 8 then
         return 8
     else return 9 end
 end
 
-
-turtle.select(15)
-print(lookD())
-if lookD() == true then slot(13)   
-    if lookU() == true then slot(slotPick()) turtle.suckUp()    
-    else  goForward() end
+slot(15)
+if lookU(13) == true then
+    local aa = slotPick() 
+    slot(aa)
+    if turtle.suckUp() == true then  end
     goForward()
-elseif lookD() == false then  travel()
-else 
+elseif lookD(15) == true then print("FALSE") turnR() travel(14)
+elseif lookD(14) == true then loadLeaves()
+else print("Error end of Dirtjob.lua") goForward() end
 
 
-end
+
 
 

@@ -1,4 +1,5 @@
-print("Starting Test")
+
+    print("Starting Test")
 
 function usrRun()
     local va = shell.programs()

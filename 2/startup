@@ -1,4 +1,4 @@
-print("Starting Test")
+    print("Starting Test")
 
 function usrRun()
     local va = shell.programs()
@@ -17,3 +17,4 @@ until counter == counterLimit
   os.sleep(15)
   usrRun()
   os.reboot()
+

@@ -1,0 +1,20 @@
+function dropOff()
+    i = 0
+    repeat
+        local aa = 1
+        turtle.dig()
+        turtle.dropDown()
+        i = i + aa
+      print(i)
+    until i == 20
+end
+
+function slot(x)
+    return turtle.select(x)
+end
+
+
+
+dropOff()
+os.reboot()
+

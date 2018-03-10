@@ -1,0 +1,75 @@
+
+--[[Version 1.0]]--
+function fuelCheck()
+  local fuelLevel = turtle.getFuelLevel()
+  if fuelLevel < 20 then
+    turtle.select(16)
+    turtle.refuel(1)
+    print("Refueled!")
+  end
+end
+
+function torchCheck()
+turtle.select(15)
+if turtle.compare() == true then
+    turtle.turnLeft()
+    turtle.forward()
+    turtle.forward()
+    turtle.forward()
+end
+end
+
+
+function chopTree()
+  local success, data = turtle.inspect()
+  if data.name == "minecraft:log" then
+    print("Tree detected... chopping.")
+    turtle.dig()
+    turtle.forward()
+    while turtle.detectUp() == true do
+      turtle.digUp()
+      turtle.up()
+    end
+    while turtle.detectDown() == false do
+      turtle.down()
+    end
+  end
+end
+function dropOff()
+turtle.select(14)
+if turtle.compare() == true then
+turtle.select(1)
+turtle.drop()
+turtle.select(2)
+turtle.drop()
+turtle.select(3)
+turtle.drop()
+turtle.select(4)
+turtle.drop()
+turtle.select(5)
+turtle.drop()
+turtle.select(6)
+turtle.drop()
+turtle.select(7)
+turtle.drop()
+turtle.turnRight()
+turtle.forward()
+turtle.forward()
+turtle.forward()
+os.reboot()
+
+
+end
+end
+
+local chopping = true
+while chopping do
+  fuelCheck()
+  torchCheck()
+   chopTree()
+   
+  turtle.suck()
+  turtle.suckUp()
+  dropOff()
+  turtle.forward()
+end
