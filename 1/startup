@@ -1,0 +1,17 @@
+print("Starting Test")
+
+function usrRun()
+    local va = shell.programs()
+    shell.run("testme.lua")
+end
+
+counter = 0
+counterLimit = 40
+repeat
+    usrRun()
+    counter = counter +1
+    print(counter)
+until counter == counterLimit
+  os.sleep(15)
+  usrRun()
+  os.reboot()

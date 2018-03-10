@@ -1,0 +1,19 @@
+print("Starting Test")
+
+function usrRun()
+    local va = shell.programs()
+    shell.run("initDirt.lua")
+end
+
+counter = 0
+counterLimit = 40
+repeat
+
+    usrRun()
+    counter = counter +1
+    print(counter)
+until counter == counterLimit
+  print("Sleeping for 15ms")
+  os.sleep(15)
+  usrRun()
+  os.reboot()
